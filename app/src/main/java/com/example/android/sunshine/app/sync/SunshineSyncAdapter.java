@@ -137,7 +137,6 @@ public class SunshineSyncAdapter extends AbstractThreadedSyncAdapter {
                 return;
             }
             reader = new BufferedReader(new InputStreamReader(inputStream));
-            int a = 5;
             String line;
             while ((line = reader.readLine()) != null) {
                 // Since it's JSON, adding a newline isn't necessary (it won't affect parsing)

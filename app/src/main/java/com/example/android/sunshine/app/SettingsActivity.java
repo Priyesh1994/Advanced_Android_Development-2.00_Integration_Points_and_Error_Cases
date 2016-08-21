@@ -24,6 +24,7 @@ import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
 import com.example.android.sunshine.app.data.WeatherContract;
 import com.example.android.sunshine.app.sync.SunshineSyncAdapter;
@@ -86,7 +87,7 @@ public class SettingsActivity extends PreferenceActivity
     private void setPreferenceSummary(Preference preference, Object value) {
         String stringValue = value.toString();
         String key = preference.getKey();
-
+        Log.v("SetPreferenceSummary",key);
         if (preference instanceof ListPreference) {
             // For list preferences, look up the correct display value in
             // the preference's 'entries' list (since they have separate labels/values).
@@ -124,6 +125,7 @@ public class SettingsActivity extends PreferenceActivity
     // This gets called before the preference is changed
     @Override
     public boolean onPreferenceChange(Preference preference, Object value) {
+        Log.v("onPreferenceChange",value.toString());
         setPreferenceSummary(preference, value);
         return true;
     }
@@ -132,6 +134,7 @@ public class SettingsActivity extends PreferenceActivity
     // start our synchronization here
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        Log.v("SharedPreferenceChanged",key);
         if ( key.equals(getString(R.string.pref_location_key)) ) {
             // Location is changed. So clear the locationStatus
             Utility.resetLocationStatus(this);
